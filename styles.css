@@ -224,10 +224,20 @@ a:hover { text-decoration-thickness: 3px; text-decoration-color: var(--amber); }
 .skills li::before { content: ""; width: 8px; height: 8px; background: var(--amber); flex: none; }
 
 .education { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 8px clamp(32px, 5vw, 72px); margin-top: clamp(40px, 6vw, 64px); }
-.education h3 { font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 4vw, 2.75rem); line-height: 1; text-transform: uppercase; }
+.education h3, .writing h3 { font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 4vw, 2.75rem); line-height: 1; text-transform: uppercase; }
 .education p { max-width: var(--measure); }
 .education p + p { margin-top: 8px; color: var(--muted); }
 .school { font-family: var(--display); font-weight: 700; font-size: 1.85rem; line-height: 1.1; color: var(--turf); }
+
+/* Writing */
+.writing { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px clamp(32px, 5vw, 72px); margin-top: clamp(56px, 8vw, 96px); }
+.writing-lead p { color: var(--muted); max-width: 40ch; margin-top: 12px; }
+.text-link { display: inline-block; margin-top: 16px; font-family: var(--display); font-weight: 700; font-size: 1.2rem; letter-spacing: 0.02em; text-decoration-thickness: 2px; text-decoration-color: var(--amber); }
+.text-link:hover { text-decoration-thickness: 4px; }
+.writing-list li { padding: 20px 0; border-top: 1px solid var(--line); }
+.writing-list li:first-child { padding-top: 0; border-top: 0; }
+.writing-list h4 { margin: 0 0 6px; font-family: var(--display); font-weight: 700; font-size: 1.6rem; line-height: 1.1; }
+.writing-list p { max-width: var(--measure); font-size: 1.05rem; line-height: 1.6; }
 
 /* Contact footer */
 .contact { background: var(--turf); color: var(--on-dark); padding-block: clamp(56px, 8vw, 96px) 32px; }
@@ -244,7 +254,7 @@ a:hover { text-decoration-thickness: 3px; text-decoration-color: var(--amber); }
 /* Tablet and phone */
 @media (max-width: 900px) {
   .hero { grid-template-columns: minmax(0, 1fr); }
-  .section-head, .timeline > li, .skills > div, .education { grid-template-columns: minmax(0, 1fr); }
+  .section-head, .timeline > li, .skills > div, .education, .writing { grid-template-columns: minmax(0, 1fr); }
   .feature { grid-template-columns: minmax(0, 1fr); }
   .what { margin-top: 4px; }
 }

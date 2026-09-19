@@ -46,6 +46,7 @@
         <div class="actions">
           <a class="btn btn-primary" href="#projects">See my projects</a>
           <a class="btn btn-ghost" href="https://github.com/esmit289" rel="noopener">GitHub</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/evan-smith-7076b5280" rel="noopener">LinkedIn</a>
           <a class="btn btn-ghost" href="mailto:esmit289@charlotte.edu">Email me</a>
         </div>
       </div>
@@ -132,9 +133,9 @@
           </tr>
           <tr>
             <th scope="row">Icing the kicker</th>
-            <td data-label="What I did">Tested whether calling a timeout right before a field goal makes the kicker miss, using ten seasons of NFL play-by-play data. I separated true iced kicks from offensive timeouts and penalties before comparing.</td>
-            <td data-label="Built with">Python, pandas, seaborn</td>
-            <td data-label="Key result"><span class="num">78% vs 85%</span><span class="cap">made when iced versus not, across 565 iced kicks out of 9,813 attempts</span></td>
+            <td data-label="What I did">Tested whether calling a timeout right before a field goal makes the kicker miss, using ten seasons of NFL play-by-play data. My first counts came up 911 kicks short, so I found the gap (offensive timeouts and penalties) and separated those out before comparing. I also note what the data can’t see, like weather and game situation.</td>
+            <td data-label="Built with">Python, pandas, seaborn, two-sample z-test</td>
+            <td data-label="Key result"><span class="num">22% vs 15%</span><span class="cap">miss rate when iced versus not, across 565 iced kicks. The difference is significant (p = 0.00003)</span></td>
             <td data-label="Links"><a href="https://github.com/esmit289/DTSC-2301-2302-Portfolio/blob/HEAD/Project1.ipynb" rel="noopener">Notebook</a></td>
           </tr>
           <tr>
@@ -146,20 +147,42 @@
           </tr>
           <tr>
             <th scope="row">Age prediction</th>
-            <td data-label="What I did">Predicted a person’s age from health variables with decision-tree regressors. I dropped the variables that didn’t help, re-tested, and used the results to classify people as healthy or unhealthy.</td>
+            <td data-label="What I did">Predicted a person’s age from 25 health and lifestyle variables with three decision-tree regressors: all variables, only those that correlate with age, and only those the model found important. Bone density was by far the most influential. The Kaggle dataset is synthetic, so I treat the findings as a modeling exercise.</td>
             <td data-label="Built with">Python, scikit-learn, pandas</td>
-            <td data-label="Key result"><span class="num">0.88</span><span class="cap">R² using only the variables that matter, up from 0.86</span></td>
-            <td data-label="Links"><a href="https://github.com/esmit289/DTSC-2301-2302-Portfolio/blob/HEAD/Project2.ipynb" rel="noopener">Notebook</a></td>
+            <td data-label="Key result"><span class="num">0.88</span><span class="cap">R² for the best of the three models, up from 0.86 with every variable</span></td>
+            <td data-label="Links"><a href="https://github.com/esmit289/DTSC-2301-2302-Portfolio/blob/HEAD/Project2.ipynb" rel="noopener">Notebook</a><a href="https://github.com/esmit289/DTSC-2301-2302-Portfolio/blob/HEAD/Project%202%20Technical%20Report.pdf" rel="noopener">Report</a></td>
           </tr>
           <tr>
-            <th scope="row">Online classes and graduation</th>
-            <td data-label="What I did">Asked whether the rise of online classes changed college graduation outcomes. Compared multiple regression, a decision tree, a tuned tree and ridge regression.</td>
-            <td data-label="Built with">Python, scikit-learn, pandas</td>
-            <td data-label="Key result"><span class="num">5</span><span class="cap">models compared on one question</span></td>
-            <td data-label="Links"><a href="https://github.com/esmit289/DTSC-2301-2302-Portfolio/blob/HEAD/FinalProject.ipynb" rel="noopener">Notebook</a></td>
+            <th scope="row">Online schooling and graduation</th>
+            <td data-label="What I did">A team project with two classmates: predicted college graduation rates and tested whether remote learning mattered. We compared six models and a random forest did best. It leaned heavily on the racial makeup of schools, which we wrote up as a bias in the dataset and a limit on the model.</td>
+            <td data-label="Built with">Python, scikit-learn, pandas, seaborn</td>
+            <td data-label="Key result"><span class="num">0.66</span><span class="cap">R² for the random forest, best of six. Plain multiple regression scored 0.42</span></td>
+            <td data-label="Links"><a href="https://github.com/esmit289/DTSC-2301-2302-Portfolio/blob/HEAD/FinalProject.ipynb" rel="noopener">Notebook</a><a href="https://github.com/esmit289/DTSC-2301-2302-Portfolio/blob/HEAD/Final%20Project%20Technical%20Report.pdf" rel="noopener">Report</a></td>
           </tr>
         </tbody>
       </table>
+
+      <div class="writing">
+        <div class="writing-lead">
+          <h3>Writing on data ethics</h3>
+          <p>Three reflections from my Modeling and Society course, on who is responsible when data shapes people’s lives.</p>
+          <a class="text-link" href="https://esmit289.wixsite.com/evan-smith-portfol-1/privacy-policy" rel="noopener">Read the full posts</a>
+        </div>
+        <ul class="writing-list">
+          <li>
+            <h4>Data science and society</h4>
+            <p>Data now shapes everyday life, and whoever holds it is responsible for how it’s used. Telling people what their data is for is how you earn their cooperation.</p>
+          </li>
+          <li>
+            <h4>When modeling is ethically ambiguous</h4>
+            <p>Modelers often decide alone whether their work is ethical, and incomplete data or proxy variables can lead to unfair outcomes. I look at three safeguards: talking with stakeholders, making models interpretable, and monitoring them over time.</p>
+          </li>
+          <li>
+            <h4>Social determinants of health and capabilities</h4>
+            <p>Medical measures like A1C are shaped by non-medical factors such as diet and lifestyle, so analysts have to account for what the data doesn’t measure directly. The Capabilities Approach makes the same point about well-being and freedom.</p>
+          </li>
+        </ul>
+      </div>
     </section>
 
     <!-- Experience -->
@@ -211,6 +234,7 @@
             <p class="org">Sports Biz Careers, Charlotte, NC</p>
             <ul>
               <li>Led 20+ high school students through sports industry career paths, working with 30+ professionals.</li>
+              <li>Attended and worked at this camp for three summers before coordinating it.</li>
             </ul>
           </div>
         </li>
@@ -241,7 +265,7 @@
         </div>
         <div>
           <dt>Analysis and modeling</dt>
-          <dd><ul><li>pandas</li><li>NumPy</li><li>SciPy</li><li>scikit-learn</li><li>Regression</li><li>Decision trees</li><li>Gradient boosting</li><li>Cross-validation</li><li>Hypothesis testing</li></ul></dd>
+          <dd><ul><li>pandas</li><li>NumPy</li><li>SciPy</li><li>scikit-learn</li><li>Regression</li><li>Decision trees</li><li>Random forests</li><li>Gradient boosting</li><li>Cross-validation</li><li>Hypothesis testing</li><li>Bias and ethics review</li></ul></dd>
         </div>
         <div>
           <dt>Visualization</dt>
@@ -275,6 +299,7 @@
       <a class="big-mail" href="mailto:esmit289@charlotte.edu">esmit289@charlotte.edu</a>
       <ul class="link-row">
         <li><a href="https://github.com/esmit289" rel="noopener">github.com/esmit289</a></li>
+        <li><a href="https://www.linkedin.com/in/evan-smith-7076b5280" rel="noopener">LinkedIn</a></li>
       </ul>
       <p class="fine">© 2026 Evan Smith. Built by hand with HTML, CSS and a little JavaScript.</p>
     </div>

@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Evan Smith | Data Science Portfolio</title>
+  <meta name="description" content="Evan Smith is a data science student at UNC Charlotte who builds models and stat tools for sports teams. Projects, experience and skills.">
+  <meta name="theme-color" content="#12352B">
+  <meta property="og:title" content="Evan Smith | Data Science Portfolio">
+  <meta property="og:description" content="Data science student at UNC Charlotte building models and stat tools for sports teams.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%2312352B'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Impact,Arial Narrow,sans-serif' font-weight='700' font-size='38' fill='%23F2B233'%3EES%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="wordmark" href="#top">Evan Smith</a>
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero wrap" id="top">
+      <div class="hero-copy">
+        <div class="who">
+          <img src="assets/evan-smith.jpg" alt="Portrait of Evan Smith" width="88" height="88">
+          <p>Charlotte, North Carolina</p>
+        </div>
+        <h1>Evan<br>Smith</h1>
+        <p class="lead">I’m a data science student at UNC Charlotte who builds models and stat tools for sports teams.</p>
+        <p class="sub">I’m the lead intern on Charlotte Men’s Basketball’s data team, and this summer I was a data analytics intern for the Pineville Porcupines. On my own, I train machine learning models and ship them as live apps.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#projects">See my projects</a>
+          <a class="btn btn-ghost" href="https://github.com/esmit289" rel="noopener">GitHub</a>
+          <a class="btn btn-ghost" href="mailto:esmit289@charlotte.edu">Email me</a>
+        </div>
+      </div>
+
+      <figure class="scoreboard" id="scoreboard">
+        <figcaption class="board-title">Wins vs. strikeouts looking</figcaption>
+        <div class="chart-holder">
+          <svg id="hero-chart" viewBox="0 0 640 440" role="img"
+               aria-label="Scatter plot of 25 Pineville Porcupines pitchers. Pitchers with more wins also have more strikeouts looking, with a correlation of 0.69."></svg>
+          <div class="tip" id="chart-tip" role="status" hidden></div>
+        </div>
+        <p class="board-note">25 Pineville Porcupines pitchers, summer 2026. Larger dots are several pitchers with the same line. From my internship analysis.</p>
+      </figure>
+    </section>
+
+    <!-- Projects -->
+    <section class="section wrap" id="projects" aria-labelledby="projects-h">
+      <div class="section-head">
+        <h2 id="projects-h">Projects</h2>
+        <p>Two of these are running live right now. The rest are analyses I did for teams and classes.</p>
+      </div>
+
+      <article class="feature">
+        <div class="feature-copy">
+          <h3>PGA Tour Win Predictor</h3>
+          <p>A machine learning model that reads a golfer’s season stats and estimates whether the season looks like a winning one. It trains on the data behind my PGA Tour dashboard and runs as a live API.</p>
+          <p>I started with logistic regression (ROC AUC 0.763). Its most confident prediction for a realistic dominant stat line topped out near 92%, and one coefficient came out with the wrong sign. I switched to gradient boosting with monotonic constraints, so every stat pushes win odds the right way, and accepted a small drop in AUC. Cross-validated ROC AUC is now 0.747 on 1,973 player-seasons, and only 19.2% of them include a win, so I report balanced accuracy (0.629) too.</p>
+          <ul class="link-row">
+            <li><a href="https://pga-tour-dashboard.vercel.app/win-predictor" rel="noopener">Try the live page</a></li>
+            <li><a href="https://esmit289--pga-win-predictor-fastapi-app.modal.run/docs" rel="noopener">API docs</a></li>
+            <li><a href="https://github.com/esmit289/PGA-Tour-Dashboard-Win_Predictor" rel="noopener">Code</a></li>
+          </ul>
+        </div>
+
+        <ol class="pipeline" aria-label="How the win predictor works, step by step">
+          <li>
+            <strong>Supabase</strong>
+            <span>Season stats for 1,973 player-seasons</span>
+          </li>
+          <li>
+            <strong>SeasonPercentileTransformer</strong>
+            <span>My custom scikit-learn step. Ranks each stat against the same season’s field</span>
+          </li>
+          <li>
+            <strong>HistGradientBoostingClassifier</strong>
+            <span>16 stats, each constrained to move win odds in the right direction</span>
+          </li>
+          <li>
+            <strong>FastAPI on Modal</strong>
+            <span>The /predict endpoint returns a win probability</span>
+          </li>
+          <li>
+            <strong>Next.js page on Vercel</strong>
+            <span>Enter a stat line and see the odds</span>
+          </li>
+        </ol>
+      </article>
+
+      <table class="stat-sheet">
+        <caption class="visually-hidden">More projects, with tools and key results</caption>
+        <thead>
+          <tr>
+            <th scope="col">Project</th>
+            <th scope="col">What I did</th>
+            <th scope="col">Built with</th>
+            <th scope="col">Key result</th>
+            <th scope="col">Links</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">PGA Tour Stats Lab</th>
+            <td data-label="What I did">A dashboard of PGA Tour player stats and win history. I pulled 72 stat categories from the PGA Tour’s public API and kept the 401 players who matter: top 150 in the FedExCup in any season from 2016 to 2026, or a verified earlier winner.</td>
+            <td data-label="Built with">Next.js, TypeScript, Supabase, Vercel</td>
+            <td data-label="Key result"><span class="num">401</span><span class="cap">players and 72 stat categories</span></td>
+            <td data-label="Links"><a href="https://pga-tour-dashboard.vercel.app" rel="noopener">Live site</a><a href="https://github.com/esmit289/PGA-Tour-Dashboard" rel="noopener">Code</a></td>
+          </tr>
+          <tr>
+            <th scope="row">What wins baseball games?</th>
+            <td data-label="What I did">For the Pineville Porcupines, I tested more than 100 pitching and hitting stats against wins, losses, saves and blown saves. For hitters, quality at-bats and hard-hit balls tracked with getting on base and scoring runs.</td>
+            <td data-label="Built with">Python, pandas, SciPy, seaborn</td>
+            <td data-label="Key result"><span class="num">0.43</span><span class="cap">correlation between walks after a first-pitch strike and blown saves (p = 0.03), the only significant one</span></td>
+            <td data-label="Links"><a href="https://github.com/esmit289/Pineville-Porcupines" rel="noopener">Code</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Icing the kicker</th>
+            <td data-label="What I did">Tested whether calling a timeout right before a field goal makes the kicker miss, using ten seasons of NFL play-by-play data. I separated true iced kicks from offensive timeouts and penalties before comparing.</td>
+            <td data-label="Built with">Python, pandas, seaborn</td>
+            <td data-label="Key result"><span class="num">78% vs 85%</span><span class="cap">made when iced versus not, across 565 iced kicks out of 9,813 attempts</span></td>
+            <td data-label="Links"><a href="https://github.com/esmit289/DTSC-2301-2302-Portfolio/blob/HEAD/Project1.ipynb" rel="noopener">Notebook</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Tour Championship analysis</th>
+            <td data-label="What I did">A Streamlit app on 39 years of Tour Championship results and the 2026 FedExCup standings. It covers scoring trends, playoffs versus stroke play, margins of victory and repeat champions.</td>
+            <td data-label="Built with">Python, Streamlit, pandas, uv</td>
+            <td data-label="Key result"><span class="num">39</span><span class="cap">years of results, 1987 to 2025</span></td>
+            <td data-label="Links"><a href="https://github.com/esmit289/DTSC-3601" rel="noopener">Code</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Age prediction</th>
+            <td data-label="What I did">Predicted a person’s age from health variables with decision-tree regressors. I dropped the variables that didn’t help, re-tested, and used the results to classify people as healthy or unhealthy.</td>
+            <td data-label="Built with">Python, scikit-learn, pandas</td>
+            <td data-label="Key result"><span class="num">0.88</span><span class="cap">R² using only the variables that matter, up from 0.86</span></td>
+            <td data-label="Links"><a href="https://github.com/esmit289/DTSC-2301-2302-Portfolio/blob/HEAD/Project2.ipynb" rel="noopener">Notebook</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Online classes and graduation</th>
+            <td data-label="What I did">Asked whether the rise of online classes changed college graduation outcomes. Compared multiple regression, a decision tree, a tuned tree and ridge regression.</td>
+            <td data-label="Built with">Python, scikit-learn, pandas</td>
+            <td data-label="Key result"><span class="num">5</span><span class="cap">models compared on one question</span></td>
+            <td data-label="Links"><a href="https://github.com/esmit289/DTSC-2301-2302-Portfolio/blob/HEAD/FinalProject.ipynb" rel="noopener">Notebook</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Experience -->
+    <section class="section wrap" id="experience" aria-labelledby="experience-h">
+      <div class="section-head">
+        <h2 id="experience-h">Experience</h2>
+        <p>Most of my work so far has been tracking games and getting the results in front of coaches.</p>
+      </div>
+
+      <ol class="timeline">
+        <li>
+          <p class="when">Jan 2026 – Present</p>
+          <div class="what">
+            <h3>Data Analysis Intern, then Lead Intern</h3>
+            <p class="org">Charlotte Men’s Basketball, UNC Charlotte. Lead intern since August 2026</p>
+            <ul>
+              <li>Lead a team of 5 that tracks live and film-based stats for the team.</li>
+              <li>Analyze box scores, possessions, and contested versus uncontested shots for us and our opponents, plus offensive and defensive effectiveness.</li>
+              <li>Work directly with the coaching staff to turn the numbers into game-planning insights.</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <p class="when">May 2026 – Aug 2026</p>
+          <div class="what">
+            <h3>Data Analytics Intern</h3>
+            <p class="org">Pineville Porcupines, Pineville, NC</p>
+            <ul>
+              <li>Tracked live stats to give the coaching staff a competitive edge.</li>
+              <li>Built advanced stats and metrics, and projects that show them clearly.</li>
+              <li>Worked with the broadcast crew to explain how games unfold to the audience.</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <p class="when">May 2025 – Present</p>
+          <div class="what">
+            <h3>Event Staff</h3>
+            <p class="org">Event Partners Incorporated / Showpros, Charlotte, NC</p>
+            <ul>
+              <li>Worked the PGA Championship and events at Spectrum Center, Truist Field and Memorial Stadium to improve the guest experience.</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <p class="when">June 2025</p>
+          <div class="what">
+            <h3>Camp Coordinator</h3>
+            <p class="org">Sports Biz Careers, Charlotte, NC</p>
+            <ul>
+              <li>Led 20+ high school students through sports industry career paths, working with 30+ professionals.</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <p class="when">Apr 2022 – May 2025</p>
+          <div class="what">
+            <h3>Server and Line Cook</h3>
+            <p class="org">Acts Retirement Home Communities, Matthews, NC</p>
+            <ul>
+              <li>Prepped and served meals for 350+ residents. Named Employee of the Month for covering shifts in both the kitchen and dining room.</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Skills -->
+    <section class="section wrap" id="skills" aria-labelledby="skills-h">
+      <div class="section-head">
+        <h2 id="skills-h">Skills</h2>
+        <p>The tools I’ve used in the projects and internships above.</p>
+      </div>
+
+      <dl class="skills">
+        <div>
+          <dt>Languages</dt>
+          <dd><ul><li>Python</li><li>R</li><li>Java</li><li>TypeScript</li></ul></dd>
+        </div>
+        <div>
+          <dt>Analysis and modeling</dt>
+          <dd><ul><li>pandas</li><li>NumPy</li><li>SciPy</li><li>scikit-learn</li><li>Regression</li><li>Decision trees</li><li>Gradient boosting</li><li>Cross-validation</li><li>Hypothesis testing</li></ul></dd>
+        </div>
+        <div>
+          <dt>Visualization</dt>
+          <dd><ul><li>seaborn</li><li>Matplotlib</li><li>Streamlit</li></ul></dd>
+        </div>
+        <div>
+          <dt>Data and deployment</dt>
+          <dd><ul><li>Supabase (Postgres)</li><li>FastAPI</li><li>Modal</li><li>Next.js</li><li>Vercel</li><li>Git and GitHub</li><li>pytest</li><li>Postman</li><li>Jupyter</li></ul></dd>
+        </div>
+        <div>
+          <dt>Sports analytics</dt>
+          <dd><ul><li>Live stat tracking</li><li>Film-based tracking</li><li>Box score and possession analysis</li><li>Shot quality</li><li>Advanced metric design</li><li>Presenting to coaches and broadcasters</li></ul></dd>
+        </div>
+      </dl>
+
+      <div class="education">
+        <h3>Education</h3>
+        <div>
+          <p class="school">University of North Carolina at Charlotte</p>
+          <p>Bachelor of Data Science, expected May 2028. Minor in Statistics and a Sports Analytics certification.</p>
+          <p>GPA 3.88. Chancellor’s List in Spring 2025, Fall 2025 and Spring 2026. Dean’s List in Fall 2024.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="contact" id="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <p>Email is the best way to reach me.</p>
+      <a class="big-mail" href="mailto:esmit289@charlotte.edu">esmit289@charlotte.edu</a>
+      <ul class="link-row">
+        <li><a href="https://github.com/esmit289" rel="noopener">github.com/esmit289</a></li>
+      </ul>
+      <p class="fine">© 2026 Evan Smith. Built by hand with HTML, CSS and a little JavaScript.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
